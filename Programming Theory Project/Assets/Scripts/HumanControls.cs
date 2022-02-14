@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HumanControls : MonoBehaviour
+public class HumanControls : CharacterCore // INHERITANCE
 {
     // Start is called before the first frame update
-    void Start()
+    override void Start()
     {
-        
+        speed = 5.0f;
+        life = 1;
+        attack = 1;
+        moveRange = 5.0f;
+        SetMoveRange();
+        moveLeft = true;
+    }
+    public override void EnterAction() // POLYMORPHISM
+    {
+        Talk();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Talk()
     {
-        
+        Debug.Log("Hello!");
     }
 }

@@ -30,7 +30,10 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (MainManager.Instance != null)
+        {
+            SetColor(MainManager.Instance.PlayerColor);
+        }
     }
 
     // Update is called once per frame
@@ -38,5 +41,14 @@ public class PlayerController : MonoBehaviour
     {
        Vector3 movement = new Vector3(move.x, 0.0f, move.y) * speed * Time.deltaTime;
        transform.Translate(movement, Space.World);
+    }
+
+    void SetColor(Color c)
+    {
+        var colorHandler = GetComponentInChildren<ColorHandler>();
+        if (colorHandler != null)
+        {
+            colorHandler.SetColor(c);
+        }
     }
 }
