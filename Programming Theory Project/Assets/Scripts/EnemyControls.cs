@@ -7,9 +7,9 @@ public class EnemyControls : CharacterCore // INHERITANCE
     private ColorHandler colorHandler;
     private Color defaultColor;
     // Start is called before the first frame update
-    override void Start()
+    protected override void Init()
     {
-        speed = 5.0f;
+        speed = 1.0f;
         life = 1;
         attack = 1;
         moveRange = 5.0f;
@@ -38,7 +38,7 @@ public class EnemyControls : CharacterCore // INHERITANCE
         }
         else
         {
-            return ColorHandler.white;
+            return Color.white;
         }
     }
 

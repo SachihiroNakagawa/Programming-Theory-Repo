@@ -5,15 +5,16 @@ using UnityEngine;
 public class HumanControls : CharacterCore // INHERITANCE
 {
     // Start is called before the first frame update
-    override void Start()
+    protected override void Init()
     {
-        speed = 5.0f;
+        speed = 0.5f;
         life = 1;
         attack = 1;
-        moveRange = 5.0f;
+        moveRange = 1.0f;
         SetMoveRange();
         moveLeft = true;
     }
+    
     public override void EnterAction() // POLYMORPHISM
     {
         Talk();

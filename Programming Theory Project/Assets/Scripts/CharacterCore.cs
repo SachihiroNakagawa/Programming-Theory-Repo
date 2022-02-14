@@ -5,20 +5,25 @@ using UnityEngine;
 public class CharacterCore : MonoBehaviour
 {
     public GameObject player;
-    public RigidBody charaRb;
-    private ColorHandler colorHandler;
+    protected Rigidbody charaRb;
     [SerializeField] protected float speed;
     [SerializeField] protected int life;
     [SerializeField] protected int attack;
     [SerializeField] protected float moveRange;
-    [SerializeField] protected float rangeX1;
-    [SerializeField] protected float rangeX2;
-    [SerializeField] protected bool moveLeft;
+    protected float rangeX1;
+    protected float rangeX2;
+    protected bool moveLeft;
     [SerializeField] protected bool isActing;
     // Start is called before the first frame update
     void Start()
     {
-        speed = 5.0f;
+        Init();
+    }
+
+    protected virtual void Init()
+    {
+        charaRb = GetComponent<Rigidbody>();
+        speed = 1.0f;
         life = 1;
         attack = 1;
         moveRange = 5.0f;
@@ -26,8 +31,7 @@ public class CharacterCore : MonoBehaviour
         moveLeft = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Move();
         if (isActing)
@@ -58,13 +62,13 @@ public class CharacterCore : MonoBehaviour
         rangeX2 = transform.position.x + moveRange;
     }
 
-    public void Move()
+    public virtual void Move()
     {
-        if (transform.position.X <= rangeX1)
+        if (transform.position.x <= rangeX1)
         {
             moveLeft = false;
         }
-        else if (transform.position.X >= rangeX2)
+        else if (transform.position.x >= rangeX2)
         {
             moveLeft = true;
         }
@@ -79,18 +83,21 @@ public class CharacterCore : MonoBehaviour
             movement = Vector3.left * speed * Time.deltaTime * -1.0f;
         }
         transform.Translate(movement, Space.World);
+        
+        float angle = Quaternion.FromToRotation(transform.forward, movement).eulerAngles.y;
+        transform.Rotate(0, angle, 0);
     }
 
-    public void EnterAction()
+    public virtual void EnterAction()
     {
 
     }
-    public void ExitAction()
+    public virtual void ExitAction()
     {
 
     }
 
-    public void ContinuousAction()
+    public virtual void ContinuousAction()
     {
 
     }
