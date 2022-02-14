@@ -42,7 +42,7 @@ public class EnemyControls : CharacterCore // INHERITANCE
         }
     }
 
-        void SetColor(Color c) // ABSTRACTION // Hiding the method of getting a color
+    void SetColor(Color c) // ABSTRACTION // Hiding the method of getting a color
     {
         var colorHandler = GetComponentInChildren<ColorHandler>();
         if (colorHandler != null)

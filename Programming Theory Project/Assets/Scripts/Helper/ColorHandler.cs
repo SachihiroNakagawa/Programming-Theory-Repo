@@ -5,19 +5,19 @@ using UnityEngine;
 // (This can be added on the visual prefab and the Unit code can just query if that component exists to set color)
 public class ColorHandler : MonoBehaviour
 {
-    public Renderer TintRenderer;
-    //public int TintMaterialSlot;
+    public Renderer objRenderer;
     
     public Color GetColor()
     {
-        var prop = new MaterialPropertyBlock();
-        return prop.GetColor("_BaseColor");
+        return objRenderer.material.GetColor("_Color");
+        //var prop = new MaterialPropertyBlock();
+        //return prop.GetColor("_BaseColor");
     }
 
-    public void SetColor(Color c)
+    public void SetColor(Color newColor)
     {
-        var prop = new MaterialPropertyBlock();
-        prop.SetColor("_BaseColor", c);
-        TintRenderer.SetPropertyBlock(prop);//, TintMaterialSlot);
+        //var prop = new MaterialPropertyBlock();
+        //prop.SetColor("_BaseColor", c);
+        objRenderer.material.SetColor("_Color", newColor);
     }
 }
